@@ -39,7 +39,7 @@ public class DemoAppTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.findElement(By.xpath("//android.widget.TextView[@content-desc='NFC']")).click();//NFC
 
-
+        driver.findElement(By.xpath("//android.widget.TextView[@content-desc='ForegroundDispatch']")).click();//ForegroundDispatch
 
 
 
