@@ -1,9 +1,14 @@
 package mobile;
 
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.touch.offset.ElementOption;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -26,6 +31,7 @@ public class DemoAppTest {
 
         try {
             String appiumServerURL = "http://127.0.0.1:4723/wd/hub";
+
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability("platformName", "Android");
             cap.setCapability("platformVersion", "11.0");
@@ -71,6 +77,36 @@ public class DemoAppTest {
 
 
     }
+    @Test
+    public void  test3()   {
+
+
+        driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"Animation\"]")).click();
+
+        driver.findElement(By.xpath("//android.widget.TextView[@content-desc='Seeking']")).click();
+
+        driver.findElement(By.id("io.appium.android.apis:id/startButton")).click();
+
+
+
+//        Actions actions=new Actions(driver);
+//
+//       // actions.dragAndDropBy(driver.findElement(By.id("io.appium.android.apis:id/seekBar"), )      dragAndDropBy().build().perform();
+//         WebElement obj= driver.findElement(By.id("io.appium.android.apis:id/seekBar")) ;
+//        TouchAction action=new TouchAction(driver);
+//        action.longPress(ElementOption.element(obj)).moveTo(ElementOption.element(obj,200,200)).release();
+
+
+    }
+
+
+
+
+
+
+
+
+
 
 //         @AfterTest
 //
