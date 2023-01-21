@@ -33,11 +33,14 @@ public class DemoAppTest {
             String appiumServerURL = "http://127.0.0.1:4723/wd/hub";
 
             DesiredCapabilities cap = new DesiredCapabilities();
+
+
+            cap.setCapability("browsername", "chrome");
             cap.setCapability("platformName", "Android");
             cap.setCapability("platformVersion", "11.0");
             cap.setCapability("app", "C:\\apkfiles\\ApiDemos.apk");
             cap.setCapability("deviceName", "Android Emulator");
-            cap.setCapability("automationName", "UiAutomator2");
+
 
 
             driver = new AndroidDriver(new URL(appiumServerURL), cap);
@@ -49,6 +52,8 @@ public class DemoAppTest {
 
     @Test
     public void  test1() throws InterruptedException {
+
+
         //Vertical scroling
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.findElement(By.xpath("//android.widget.TextView[@content-desc='NFC']")).click();//NFC
@@ -87,6 +92,9 @@ public class DemoAppTest {
 
         driver.findElement(By.id("io.appium.android.apis:id/startButton")).click();
 
+        driver.navigate().back();
+        driver.navigate().back();
+        driver.navigate().back();
 
 
 //        Actions actions=new Actions(driver);
