@@ -25,7 +25,7 @@ public class SelendroidAPKTest {
             cap.setCapability("platformName", "Android");
             cap.setCapability("platformVersion", "11.0");
             cap.setCapability("app", "C:\\apkfiles\\selendroid-test-app-0.17.0.apk");
-            cap.setCapability("deviceName", "Pixel 2 API 30");
+            cap.setCapability("deviceName", "Pixel 2 API 30 ");
             cap.setCapability("automationName", "UiAutomator2");
 
             driver = new AndroidDriver(new URL(url), cap);

@@ -1,9 +1,12 @@
 package mobile;
 
+import com.google.common.collect.ImmutableMap;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -16,41 +19,44 @@ public class Sample {
 
 
     public AndroidDriver  driver;
-    @Test
-    public void test1() throws MalformedURLException{
+    @BeforeTest
+    public void setUp() throws InterruptedException, MalformedURLException {
 
-// Create object of  DesiredCapabilities class and specify android platform
-        DesiredCapabilities capabilities=new DesiredCapabilities();
+        String url = "http://127.0.0.1:4723/wd/hub";
 
+        DesiredCapabilities cap = new DesiredCapabilities();
 
-// set the capability to execute test in chrome browser
-        capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
-
-// set the capability to execute our test in Android Platform
-        //capabilities.setCapability(MobileCapabilityType.PLATFORM,Platform.ANDROID);
-
-// we need to define platform name
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
-
-// Set the device name as well (you can give any name)
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"my phone");
-
-        // set the android version as well
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"11.0");
+        cap.setCapability("chromedriverExecutable", "./src/test/java/resources/drivers/chromedriver.exe");
+        Thread.sleep(10000);
+        cap.setCapability("browsername", "chrome");
+        cap.setCapability("platformName", "Android");
+        cap.setCapability("platformVersion", "11.0");
+       // cap.setCapability("app", "C:\\apkfiles\\ApiDemos.apk");
+        cap.setCapability("deviceName", "Android Emulator");
+        cap.setCapability("deviceName", "Pixel 2 API 30");
+        cap.setCapability("udid", "emulator-5556");
 
 
 
 
-        // Create object of URL class and specify the appium server address
-        URL url= new URL("http://127.0.0.1:4723/wd/hub");
-        capabilities.setCapability("appPackage", "com.android.chrome");
-        capabilities.setCapability("appActivity", "com.google.android.apps.chrome.Main");
+        driver = new AndroidDriver(new URL(url), cap);
 
-  // Create object of  AndroidDriver class and pass the url and capability that we created
-        WebDriver driver = new AndroidDriver(url, capabilities);
+        System.out.println("pass here");
 
-// Open url
-        driver.get("http://www.facebook.com");
+
+    }
+
+         @Test
+           public void test1() throws InterruptedException {
+             driver.get("https://techproeducation.com/");
+             Thread.sleep(30000);
+
+
+
+         }
+
+
+
 
         // print the title
 //        System.out.println("Title "+driver.getTitle());
@@ -87,6 +93,8 @@ public class Sample {
         cap.setCapability("platformversion", "11.0");
         cap.setCapability("platformName", "Android");
         //cap.setCapability("deviceName", "Pixel 2 API 30");
+
+
 
 
 //        cap.setCapability("appPackage", "com.android.chrome");
@@ -139,5 +147,5 @@ public class Sample {
 */
 
 
-    }
+
 }

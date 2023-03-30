@@ -27,37 +27,39 @@ public class DemoAppTest {
 
     @BeforeTest
 
-    public void setUp() throws MalformedURLException {
+    public void setUp() throws MalformedURLException, InterruptedException {
 
-        try {
-            String appiumServerURL = "http://127.0.0.1:4723/wd/hub";
+//        try {
+            String url = "http://127.0.0.1:4723/wd/hub";
 
             DesiredCapabilities cap = new DesiredCapabilities();
 
-
+            cap.setCapability("chromedriverExecutable", "./src/test/java/resources/drivers/chromedriver.exe");
+            Thread.sleep(10000);
             cap.setCapability("browsername", "chrome");
             cap.setCapability("platformName", "Android");
             cap.setCapability("platformVersion", "11.0");
             cap.setCapability("app", "C:\\apkfiles\\ApiDemos.apk");
             cap.setCapability("deviceName", "Android Emulator");
+            cap.setCapability("deviceName", "Pixel 2 API 28");
 
 
 
-            driver = new AndroidDriver(new URL(appiumServerURL), cap);
-        }catch(Exception e){
-            System.out.println("NP");
-
-        }
-    }
+            driver = new AndroidDriver(new URL(url), cap);
+//        }catch(Exception e){
+//            System.out.println("NP");
+//
+//        }
+   }
 
     @Test
     public void  test1() throws InterruptedException {
 
 
         //Vertical scroling
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+      //  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.findElement(By.xpath("//android.widget.TextView[@content-desc='NFC']")).click();//NFC
-
+         Thread.sleep(10000);
         driver.findElement(By.xpath("//android.widget.TextView[@content-desc='ForegroundDispatch']")).click();//ForegroundDispatch
 
          driver.navigate().back();
@@ -68,12 +70,12 @@ public class DemoAppTest {
 
     @Test
     public void  test2() throws InterruptedException {
-
+        Thread.sleep(10000);
         // Click preference
-        driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"Preference\"]")).click();
+        driver.findElement(By.xpath("//android.widget.TextView[@content-desc='Preference']")).click();
 
         //  Preference dependencies
-        driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"3. Preference dependencies\"]")).click();
+        driver.findElement(By.xpath("//android.widget.TextView[@content-desc='3. Preference dependencies']")).click();
         // Check box
         driver.findElement(By.id("android:id/title")).click();
         Thread.sleep(10000);
